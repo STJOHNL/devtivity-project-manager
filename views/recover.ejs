@@ -1,0 +1,9 @@
+<%- include('partials/header') -%>
+    <section class="login-container">
+        <form action="/recover" method="POST" class="login-form">
+            <h1>Silly Goose! You forgot your password</h1>
+            <input type="email" name="email" placeholder="Email">
+            <button class="btn">Send Reset Link</button>
+        </form>
+    </section>
+    <%- include('partials/footer') -%>

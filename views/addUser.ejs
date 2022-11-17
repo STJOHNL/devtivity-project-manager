@@ -1,0 +1,24 @@
+<%- include('partials/header') -%>
+
+    <body>
+        <% if (locals.messages.errors) { %>
+            <% messages.errors.forEach( el=> { %>
+                <div class="error-message">
+                    <%= el.msg %>
+                </div>
+                <% }) %>
+                    <% } %>
+                        <form action="/addUser" method="POST">
+                            <input type="text" name="fName" placeholder="First Name">
+                            <input type="text" name="lName" placeholder="Last Name">
+                            <input type="email" name="email" placeholder="Email">
+                            <input type="tel" name="phone" placeholder="Phone">
+                            <input type="text" name="company" placeholder="company">
+                            <input type="checkbox" name="admin" value="true">
+                            <input type="password" name="password" placeholder="Password">
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                            <input type="submit">
+                        </form>
+    </body>
+
+    </html>

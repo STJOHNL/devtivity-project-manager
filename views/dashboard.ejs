@@ -1,0 +1,85 @@
+<%- include('partials/header') -%>
+
+    <% projects.forEach( el=> { %>
+        <section class="project--container">
+            <section class="project--tabs">
+                <section class="<%= el._id %>Tab project-tabs-selected" onclick="changeTab('<%= el._id %>Tab')">
+                    <h2>
+                        <%= el.name %>
+                    </h2>
+                    <span class="company-name">
+                        <%= el.company %>
+                    </span>
+                </section>
+                <!-- <button class="<%= el._id %>Tab project-tabs-unselected" onclick="changeTab('<%= el._id %>Tab')">Documents</button>
+                <button class="<%= el._id %>Tab project-tabs-unselected" onclick="changeTab('<%= el._id %>Tab')">Messages</button> -->
+            </section>
+            <section class="project--table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Priority</th>
+                            <th>Estimated Time</th>
+                            <th>Cost</th>
+                            <th>Status</th>
+                            <th><i class="fa-solid fa-plus" onclick="showHide('<%= el._id %>')"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% el.tasks.forEach( el=> { %>
+                            <tr>
+                                <td>
+                                    <%= el.taskName %>
+                                </td>
+                                <td>
+                                    <%= el.priority %>
+                                </td>
+                                <td>
+                                    <%= el.estTime %>
+                                </td>
+                                <td>
+                                    {COST}
+                                </td>
+                                <td>
+                                    <%= el.status %>
+                                </td>
+                                <td><button class="show-more"><i class="fa-solid fa-caret-down"></i></button></td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                {}
+                            </td>
+                            <td>
+                                {}
+                            </td>
+                            <td>
+                                {TOTAL EST TIME}
+                            </td>
+                            <td>
+                                {TOTAL COST}
+                            </td>
+                            <td>
+                                {PERCTENTAGE COMPLETE}
+                            </td>
+                            <td>{}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <section class="create-task-container hide" id="<%= el._id %>">
+                    <form action="/task/add/<%= el._id %>" method="post">
+                        <input type="text" name="taskName" placeholder="Task Name" required>
+                        <textarea name="taskDescription" cols="30" rows="10" placeholder="Description"></textarea>
+                        <input type="text" name="priority" placeholder="Priority">
+                        <input type="text" name="status" placeholder="Status">
+                        <button type="submit">Add Task</button>
+                    </form>
+                </section>
+            </section>
+        </section>
+        <% }) %>
+            <%- include('partials/createProject') -%>
+                <%- include('partials/footer') -%>

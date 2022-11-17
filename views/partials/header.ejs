@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager</title>
+    <script src="https://kit.fontawesome.com/f44a67c105.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <nav class="top-nav">
+        <button onclick="showHide('create-project')" class="btn" id="changeText">Propose New Project</button>
+        <img src="/media/narrow-logo-inverted-v2.png" alt="Devtivity">
+        <h5>Welcome <%= user.company %>!</h5>
+    </nav>
+    <main>
