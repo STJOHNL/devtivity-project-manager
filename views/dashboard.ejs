@@ -2,14 +2,11 @@
 
     <% projects.forEach( el=> { %>
         <section class="project--container">
-            <section class="project--tabs">
-                <section class="<%= el._id %>Tab project-tabs-selected" onclick="changeTab('<%= el._id %>Tab')">
+            <section class="project--tab">
+                <section class="<%= el._id %>Tab" onclick="changeTab('<%= el._id %>Tab')">
                     <h2>
                         <%= el.name %>
                     </h2>
-                    <span class="company-name">
-                        <%= el.company %>
-                    </span>
                 </section>
                 <!-- <button class="<%= el._id %>Tab project-tabs-unselected" onclick="changeTab('<%= el._id %>Tab')">Documents</button>
                 <button class="<%= el._id %>Tab project-tabs-unselected" onclick="changeTab('<%= el._id %>Tab')">Messages</button> -->

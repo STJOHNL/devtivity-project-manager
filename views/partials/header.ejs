@@ -18,6 +18,15 @@
     <nav class="top-nav">
         <button onclick="showHide('create-project')" class="btn" id="changeText">Propose New Project</button>
         <img src="/media/narrow-logo-inverted-v2.png" alt="Devtivity">
-        <h5>Welcome <%= user.company %>!</h5>
+        <section class="dropdown">
+            <a href="/profile" class="dropbtn">
+                <%= user.company %>
+            </a>
+            <i class="fa-regular fa-square-caret-down"></i>
+            <section class="dropdown-content">
+                <a href="/profile">My Profile</a>
+                <a href="/logout">Logout</a>
+            </section>
+        </section>
     </nav>
     <main>
