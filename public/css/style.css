@@ -238,3 +238,19 @@ a {
 #create-project--name-input {
     width: 50%;
 }
+
+th i {
+    color: #0bbfea;
+    padding-right: 10px;
+    font-size: 1rem;
+    transition: all .2s ease-in-out;
+}
+
+th i:hover {
+    transform: scale(1.3);
+}
+
+.add-task-icon {
+    cursor: pointer;
+
+}
