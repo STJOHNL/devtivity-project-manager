@@ -4,7 +4,8 @@ const Project = require('../models/Project')
 module.exports = {
     postTask: async (req, res) => {
         try {
-            console.log(req.params)
+
+            let taskEstCost = req.body.estTime * req.body.rate
             await Project.findOneAndUpdate({ _id: req.params.id },
                 {
                     $push: {
@@ -12,6 +13,7 @@ module.exports = {
                             taskName: req.body.taskName,
                             taskDescription: req.body.taskDescription,
                             estTime: req.body.estTime,
+                            estCost: taskEstCost,
                             priority: req.body.priority,
                             subTasks: req.body.subTasks,
                             status: req.body.status

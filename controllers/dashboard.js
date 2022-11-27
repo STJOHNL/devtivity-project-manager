@@ -7,8 +7,10 @@ module.exports = {
             const user = await User.findById(req.user.id)
             if (req.user.admin) {
                 const projectItems = await Project.find()
+                const users = await User.find()
                 res.render('dashboard.ejs',
                     {
+                        users: users,
                         projects: projectItems,
                         user: user
                     })

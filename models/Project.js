@@ -3,10 +3,11 @@ const mongoose = require('mongoose')
 const TaskSchema = new mongoose.Schema({
     taskName: String,
     taskDescription: String,
-    estTime: String,
+    rate: Number,
+    estTime: Number,
+    estCost: Number,
     dueDate: Date,
     priority: String,
-    subTasks: [String],
     status: String
 })
 
@@ -18,8 +19,9 @@ const ProjectSchema = new mongoose.Schema({
     company: String,
     description: String,
     tasks: [TaskSchema],
-    budget: String,
-    cost: String,
+    budget: Number,
+    estTime: Number,
+    cost: Number,
     dueDate: Date,
     documents: String,
     messages: String

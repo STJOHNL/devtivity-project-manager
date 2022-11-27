@@ -36,7 +36,7 @@
                                     <%= el.estTime %>
                                 </td>
                                 <td>
-                                    {COST}
+                                    $<%= el.estCost %>
                                 </td>
                                 <td>
                                     <%= el.status %>
@@ -54,10 +54,19 @@
                                 {}
                             </td>
                             <td>
-                                {TOTAL EST TIME}
+                                <% let totalTime=0 %>
+                                    <% el.tasks.forEach( el=> { %>
+                                        <% totalTime=el.estTime + totalTime %>
+                                            <% }) %>
+                                                <%= totalTime %>
+
                             </td>
                             <td>
-                                {TOTAL COST}
+                                <% let totalCost=0 %>
+                                    <% el.tasks.forEach( el=> { %>
+                                        <% totalCost=el.estCost + totalCost %>
+                                            <% }) %>
+                                                $<%= totalCost %>
                             </td>
                             <td>
                                 {PERCTENTAGE COMPLETE}
@@ -70,9 +79,27 @@
                     <form action="/task/add/<%= el._id %>" method="post">
                         <input type="text" name="taskName" placeholder="Task Name" required>
                         <textarea name="taskDescription" cols="30" rows="10" placeholder="Description"></textarea>
-                        <input type="text" name="priority" placeholder="Priority">
-                        <input type="text" name="status" placeholder="Status">
-                        <button type="submit">Add Task</button>
+                        <select name="priority">
+                            <option value="Low">Task Priority</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                            <option value="Urgent">Urgent</option>
+                        </select>
+                        <select name="status">
+                            <option value="Not Started">Task Status</option>
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="On Hold">On Hold</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <label for="taskDueDate">Due Date</label>
+                        <input type="date" name="taskDueDate">
+                        <% if(user.admin){ %>
+                            <input type="number" name="rate" placeholder="Rate" required>
+                            <input type="number" name="estTime" step="0.01" placeholder="Estimated Time" required>
+                            <% } %>
+                                <button type="submit">Add Task</button>
                     </form>
                 </section>
             </section>
