@@ -20,7 +20,7 @@
                             <th>Estimated Time</th>
                             <th>Cost</th>
                             <th>Status</th>
-                            <th class="add-task-icon"><i class="fa-solid fa-plus" onclick="showHide('<%= el._id %>')"></i>Add Task</th>
+                            <th class="add-task-icon" onclick="showHide('<%= el._id %>')">Add Task</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,16 +43,28 @@
                                 </td>
                                 <td><button class="show-more"><i class="fa-solid fa-caret-down"></i></button></td>
                             </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <h5>Description</h5>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat harum quam nisi, ab minima magni!</p>
+                                    <h5>Rate</h5>
+                                    <span>
+                                        <%= el.rate %>
+                                    </span>
+                                    <h5>Due Date</h5>
+                                    <span>
+                                        <%= el.dueDate %>
+                                    </span>
+                                </td>
+                            </tr>
                             <% }) %>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td>
-                                {}
+                                <%= el.tasks.length %> Tasks
                             </td>
-                            <td>
-                                {}
-                            </td>
+                            <td></td>
                             <td>
                                 <% let totalTime=0 %>
                                     <% el.tasks.forEach( el=> { %>
@@ -68,38 +80,56 @@
                                             <% }) %>
                                                 $<%= totalCost %>
                             </td>
-                            <td>
-                                {PERCTENTAGE COMPLETE}
-                            </td>
-                            <td>{}</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tfoot>
                 </table>
                 <section class="create-task-container hide" id="<%= el._id %>">
-                    <form action="/task/add/<%= el._id %>" method="post">
-                        <input type="text" name="taskName" placeholder="Task Name" required>
-                        <textarea name="taskDescription" cols="30" rows="10" placeholder="Description"></textarea>
-                        <select name="priority">
-                            <option value="Low">Task Priority</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                            <option value="Urgent">Urgent</option>
-                        </select>
-                        <select name="status">
-                            <option value="Not Started">Task Status</option>
-                            <option value="Not Started">Not Started</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="On Hold">On Hold</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                        <label for="taskDueDate">Due Date</label>
-                        <input type="date" name="taskDueDate">
+                    <form action="/task/add/<%= el._id %>" method="post" class="create-task-form">
+                        <section class="create-task-inputs">
+                            <section>
+                                <label for="taskName">Task Name</label>
+                                <input type="text" name="taskName" placeholder="Task Name" required>
+                            </section>
+                            <section>
+                                <label for="priority">Priority</label>
+                                <select name="priority">
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                    <option value="Urgent">Urgent</option>
+                                </select>
+                            </section>
+                            <section>
+                                <label for="taskDueDate">Due Date</label>
+                                <input type="date" name="taskDueDate">
+                            </section>
+                        </section>
+                        <label for="taskDescription">Description</label>
+                        <textarea name="taskDescription" rows="10" placeholder="Description"></textarea>
                         <% if(user.admin){ %>
-                            <input type="number" name="rate" placeholder="Rate" required>
-                            <input type="number" name="estTime" step="0.01" placeholder="Estimated Time" required>
+                            <section class="create-task-inputs">
+                                <section>
+                                    <label for="rate">Rate</label>
+                                    <input type="number" name="rate" placeholder="50" required>
+                                </section>
+                                <section>
+                                    <label for="estTime">Estimated Time</label>
+                                    <input type="number" name="estTime" step="0.01" placeholder="1.5" required>
+                                </section>
+                                <section>
+                                    <label for="status">Status</label>
+                                    <select name="status">
+                                        <option value="Not Started">Not Started</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </section>
+                            </section>
                             <% } %>
-                                <button type="submit">Add Task</button>
+                                <button type="submit" class="btn">Add Task</button>
                     </form>
                 </section>
             </section>
