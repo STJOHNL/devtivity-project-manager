@@ -9,3 +9,15 @@ const showHide = (elementID) => {
     }
     document.getElementById('create-project').scrollIntoView()
 }
+
+const showHideAddTask = (elementID) => {
+    document.getElementById(elementID).classList.toggle('hide')
+}
+
+const showHideTaskInfo = (elementID) => {
+    document.getElementById(elementID).classList.toggle('hide')
+}
+
+const warnMessage = () => {
+    confirm('Are you sure you would like to delete this task?')
+}

@@ -63,6 +63,7 @@ td {
 tfoot td {
     border: 1px solid #ffffff;
     background: #e9edf0;
+    font-weight: 700;
 }
 
 a {
@@ -200,6 +201,19 @@ a {
     cursor: pointer;
     background: white;
     border: none;
+}
+
+.dropdown-btn {
+    text-align: center;
+}
+
+.dropdown-btn i {
+    font-size: 1.2rem;
+    transition: all .2s ease-in-out;
+}
+
+.dropdown-btn i:hover {
+    scale: 1.3;
 }
 
 .create-proj-container {

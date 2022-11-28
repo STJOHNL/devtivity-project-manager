@@ -24,7 +24,6 @@ module.exports = {
     getCompanyDashboard: async (req, res) => {
         try {
             const user = await User.findById(req.user.id)
-            console.log(user.company)
             if (req.user.company === req.params.company || req.user.admin) {
                 const projectItems = await Project.find({ company: req.params.company })
                 res.render('dashboard.ejs',
