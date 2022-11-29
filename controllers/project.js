@@ -17,5 +17,13 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    deleteProject: async (req, res) => {
+        try {
+            await Project.findOneAndDelete({ _id: req.params.id })
+            res.redirect('/dashboard')
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

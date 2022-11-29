@@ -2,10 +2,16 @@
     <% projects.forEach( el=> { %>
         <section class="project--container">
             <section class="project--tab">
-                <a class="<%= el._id %>Tab" onclick="changeTab('<%= el._id %>Tab')">
+                <a class="<%= el._id %>Tab project-tab-a" onclick="changeTab('<%= el._id %>Tab')">
                     <h2>
                         <%= el.name %>
                     </h2>
+                    <form action="/project/delete/<%= el._id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="icon-btn">
+                            <i class="fa-regular fa-circle-xmark" onclick="warnMessage()"></i>
+                        </button>
+                    </form>
+
                 </a>
             </section>
             <!-- <section class="project--tab">
@@ -51,7 +57,7 @@
                                     <i class="fa-solid fa-pen"></i>
                                 </td>
                                 <td>
-                                    <form action="task/delete/<%= el._id %>?_method=DELETE" method="POST">
+                                    <form action="/task/delete/<%= el._id %>?_method=DELETE" method="POST">
                                         <button type="submit"><i class="fa-solid fa-trash" onclick="warnMessage()"></i></button>
                                     </form>
 

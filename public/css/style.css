@@ -193,9 +193,23 @@ a {
     border-bottom: none;
 }
 
+.project-tab-a {
+    display: flex;
+    gap: 45px;
+    align-items: center;
+}
+
 .project--tab h2 {
     font-size: 1.8rem;
     padding: 10px 0 0 35px;
+}
+
+.project-tab-a i {
+    color: #999999;
+}
+
+.project-tab-a i:hover {
+    color: #050a30;
 }
 
 .show-more {
