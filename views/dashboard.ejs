@@ -44,17 +44,8 @@
                                 <td>
                                     <%= el.status %>
                                 </td>
-                                <td class="dropdown-btn">
+                                <td class="table-icons-box" colspan="3">
                                     <i class="show-more fa-solid fa-caret-down" onclick="showHideTaskInfo('task-info-<%= el._id %>')"></i>
-                                </td>
-                                <td>
-                                    <i class="fa-solid fa-pen"></i>
-                                </td>
-                                <td>
-                                    <form action="task/delete/<%= el._id %>?_method=DELETE" method="POST">
-                                        <button type="submit"><i class="fa-solid fa-trash" onclick="warnMessage()"></i></button>
-                                    </form>
-
                                 </td>
                             </tr>
                             <tr class="hide" id="task-info-<%= el._id %>">
@@ -71,6 +62,12 @@
                                     <span>
                                         <%= el.dueDate %>
                                     </span>
+                                </td>
+                                <td class="table-icons-box">
+                                    <i class="fa-solid fa-pen"></i>
+                                    <form action="task/delete/<%= el._id %>?_method=DELETE" method="POST">
+                                        <button type="submit" class="icon-btn"><i class="fa-solid fa-trash" onclick="warnMessage()"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                             <% }) %>
