@@ -123,11 +123,32 @@
                         </section>
                         <label for="taskDescription">Description</label>
                         <textarea name="taskDescription" rows="10" placeholder="Description"></textarea>
-                        <button type="submit" class="btn">Add Task</button>
+                        <% if(user.admin){ %>
+                            <section class="create-task-inputs">
+                                <section>
+                                    <label for="rate">Rate</label>
+                                    <input type="number" name="rate" placeholder="50" required>
+                                </section>
+                                <section>
+                                    <label for="estTime">Estimated Time</label>
+                                    <input type="number" name="estTime" step="0.01" placeholder="1.5" required>
+                                </section>
+                                <section>
+                                    <label for="status">Status</label>
+                                    <select name="status">
+                                        <option value="Not Started">Not Started</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </section>
+                            </section>
+                            <% } %>
+                                <button type="submit" class="btn">Add Task</button>
                     </form>
                 </section>
             </section>
         </section>
         <% }) %>
-            <%- include('partials/createProject') -%>
+            <%- include('partials/adminCreateProject') -%>
                 <%- include('partials/footer') -%>

@@ -6,27 +6,14 @@
                     <label for="name">Project Name</label>
                     <input type="text" id="name" name="name" placeholder="Project Name" required>
                 </section>
-                <% if(user.admin) { %>
-                    <section id="create-project--name-input" class="create-project--input-container">
-                        <label for="name">Company</label>
-                        <select name="company" required>
-                            <option value="">Select Company</option>
-                            <% users.forEach( el=> { %>
-                                <option value="<%= el.company %>">
-                                    <%= el.company %>
-                                </option>
-                                <% }) %>
-                        </select>
-                    </section>
-                    <% } %>
-                        <section class="create-project--input-container">
-                            <label for="budget">Budget</label>
-                            <input type="number" name="budget">
-                        </section>
-                        <section class="create-project--input-container" id="test">
-                            <label for="dueDate">Due Date</label>
-                            <input type="date" name="dueDate" id="dueDate">
-                        </section>
+                <section class="create-project--input-container">
+                    <label for="budget">Budget</label>
+                    <input type="number" name="budget">
+                </section>
+                <section class="create-project--input-container" id="test">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" name="dueDate" id="dueDate">
+                </section>
             </section>
             <section class="create-project--input-container">
                 <label for="description">Decription</label>

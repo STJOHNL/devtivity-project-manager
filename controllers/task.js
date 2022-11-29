@@ -25,5 +25,27 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
+    editTask: async (req, res) => {
+        try {
+            await Project.findOneAndUpdate({ _id: req.params.id },
+                {})
+        } catch (error) {
+            console.log(error)
+        }
+    },
+    deleteTask: async (req, res) => {
+        try {
+            await Project.updateMany({
+                $pull: {
+                    tasks: {
+                        _id: req.params.id
+                    }
+                }
+            })
+            res.redirect('/dashboard')
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

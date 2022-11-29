@@ -2,13 +2,13 @@ const Project = require('../models/Project')
 const User = require('../models/User')
 
 module.exports = {
-    getDashboard: async (req, res) => {
+    getAdminDashboard: async (req, res) => {
         try {
             const user = await User.findById(req.user.id)
             if (req.user.admin) {
                 const projectItems = await Project.find()
                 const users = await User.find()
-                res.render('dashboard.ejs',
+                res.render('adminDashboard.ejs',
                     {
                         users: users,
                         projects: projectItems,

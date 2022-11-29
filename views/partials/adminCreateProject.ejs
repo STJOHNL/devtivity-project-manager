@@ -1,0 +1,38 @@
+<section class="create-proj-container">
+    <section class="create-proj-form hide" id="create-project">
+        <form action="/project/create" method="post">
+            <section class="create-project--top-inputs">
+                <section id="create-project--name-input" class="create-project--input-container">
+                    <label for="name">Project Name</label>
+                    <input type="text" id="name" name="name" placeholder="Project Name" required>
+                </section>
+                <% if(user.admin) { %>
+                    <section id="create-project--name-input" class="create-project--input-container">
+                        <label for="name">Company</label>
+                        <select name="company" required>
+                            <option value="">Select Company</option>
+                            <% users.forEach( el=> { %>
+                                <option value="<%= el.company %>">
+                                    <%= el.company %>
+                                </option>
+                                <% }) %>
+                        </select>
+                    </section>
+                    <% } %>
+                        <section class="create-project--input-container">
+                            <label for="budget">Budget</label>
+                            <input type="number" name="budget">
+                        </section>
+                        <section class="create-project--input-container" id="test">
+                            <label for="dueDate">Due Date</label>
+                            <input type="date" name="dueDate" id="dueDate">
+                        </section>
+            </section>
+            <section class="create-project--input-container">
+                <label for="description">Decription</label>
+                <textarea name="description" cols="30" rows="10" placeholder="Description"></textarea>
+            </section>
+            <button type="submit" class="btn">Propose New Project</button>
+        </form>
+    </section>
+</section>

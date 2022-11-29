@@ -57,12 +57,16 @@ exports.logout = (req, res, next) => {
     })
 }
 
-exports.getAddUser = (req, res) => {
-    // if (req.user.admin) {
-    res.render('addUser', { title: 'Create Account' })
-    // } else {
-    //     res.redirect(`/dashboard/${req.user.company}`)
-    // }
+exports.getAddUser = async (req, res) => {
+    try {
+        const user = User.findById(req.user.id)
+        res.render('addUser.ejs',
+            {
+                user: user,
+            })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 exports.getRecover = (req, res) => {
