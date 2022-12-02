@@ -13,6 +13,7 @@ exports.getLogin = (req, res) => {
     })
 }
 
+// Work on removing validation errors
 exports.postLogin = (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })

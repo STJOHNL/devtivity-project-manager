@@ -2,9 +2,12 @@ const User = require('../models/User')
 const Project = require('../models/Project')
 
 module.exports = {
+    // Add task to project
     postTask: async (req, res) => {
         try {
+            // Calculate estimated cost based on time/rate
             let taskEstCost = req.body.estTime * req.body.rate
+            // Find project model and push task to task array
             await Project.findOneAndUpdate({ _id: req.params.id },
                 {
                     $push: {
@@ -26,6 +29,7 @@ module.exports = {
             console.log(error)
         }
     },
+    // Update existing task
     editTask: async (req, res) => {
         try {
             await Project.findOneAndUpdate({ _id: req.params.id },
@@ -34,6 +38,7 @@ module.exports = {
             console.log(error)
         }
     },
+    // Remove task
     deleteTask: async (req, res) => {
         try {
             await Project.updateMany({

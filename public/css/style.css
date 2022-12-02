@@ -5,6 +5,7 @@
 * {
     font-family: 'Poppins', sans-serif;
     color: #050a30;
+    font-size: 112.5%;
 }
 
 body {
@@ -33,7 +34,6 @@ th {
 input,
 textarea,
 select {
-    font-size: 1rem;
     padding: 5px 10px;
     border-radius: 10px;
     border: 1px solid #7a7a7a;
@@ -49,7 +49,6 @@ table {
 th {
     background-color: #050a30;
     color: #0bbfea;
-    font-size: 1.4rem;
     text-align: center;
     padding: 15px 10px;
     border: 1px solid #e9ebf0;
@@ -96,7 +95,6 @@ a {
     align-items: center;
     padding: 0 50px;
     justify-content: space-between;
-    font-size: 1.2rem;
 }
 
 .logged-out {
@@ -200,7 +198,6 @@ a {
 }
 
 .project--tab h2 {
-    font-size: 1.8rem;
     padding: 10px 0 0 35px;
 }
 
@@ -214,7 +211,7 @@ a {
 
 .show-more {
     cursor: pointer;
-    background: white;
+    background: #ffffff;
     border: none;
 }
 
@@ -224,7 +221,6 @@ a {
 
 .table-icons-box i,
 .icon-btn {
-    font-size: 1.2rem;
     transition: all .2s ease-in-out;
 }
 
@@ -232,6 +228,10 @@ a {
 .icon-btn:hover {
     scale: 1.3;
 }
+
+/* ---------------------------------------------------------------- */
+/* CREATE PROJECT STYLES */
+/* ---------------------------------------------------------------- */
 
 .create-proj-container {
     display: flex;
@@ -271,6 +271,18 @@ a {
     width: 50%;
 }
 
+.create-task-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 25px 25px 25px;
+}
+
+.create-task-inputs {
+    padding: 20px 0;
+    display: flex;
+    gap: 50px;
+}
+
 .add-task-icon {
     color: #0bbfea;
     transition: all .2s ease-in-out;
@@ -287,18 +299,6 @@ a {
 .add-task-icon {
     cursor: pointer;
 
-}
-
-.create-task-form {
-    display: flex;
-    flex-direction: column;
-    margin: 0 25px 25px 25px;
-}
-
-.create-task-inputs {
-    padding: 20px 0;
-    display: flex;
-    gap: 50px;
 }
 
 .icon-btn {

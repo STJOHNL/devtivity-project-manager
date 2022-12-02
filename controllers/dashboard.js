@@ -2,9 +2,12 @@ const Project = require('../models/Project')
 const User = require('../models/User')
 
 module.exports = {
+    // Return admin dashboard
     getAdminDashboard: async (req, res) => {
         try {
+            // Return active user data
             const user = await User.findById(req.user.id)
+            // Return all projects and users if admin
             if (req.user.admin) {
                 const projectItems = await Project.find()
                 const users = await User.find()
@@ -21,9 +24,11 @@ module.exports = {
             console.log(err)
         }
     },
+    // Return dashboard for users company/projects
     getCompanyDashboard: async (req, res) => {
         try {
             const user = await User.findById(req.user.id)
+            // Ensure user belongs to copany or is an admin
             if (req.user.company === req.params.company || req.user.admin) {
                 const projectItems = await Project.find({ company: req.params.company })
                 res.render('dashboard.ejs',
