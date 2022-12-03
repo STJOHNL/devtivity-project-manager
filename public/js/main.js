@@ -14,6 +14,10 @@ const showHideAddTask = (elementID) => {
     document.getElementById(elementID).classList.toggle('hide')
 }
 
+const showHideEditTask = (elementID) => {
+    document.getElementById(elementID).classList.toggle('hide')
+}
+
 const showHideTaskInfo = (elementID) => {
     document.getElementById(elementID).classList.toggle('hide')
 }

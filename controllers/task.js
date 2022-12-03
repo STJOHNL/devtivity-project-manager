@@ -33,7 +33,19 @@ module.exports = {
     editTask: async (req, res) => {
         try {
             await Project.findOneAndUpdate({ _id: req.params.id },
-                {})
+                {
+                    tasks: {
+                        taskName: req.body.taskName,
+                        taskDescription: req.body.taskDescription,
+                        rate: req.body.rate,
+                        estTime: req.body.estTime,
+                        estCost: taskEstCost,
+                        priority: req.body.priority,
+                        dueDate: req.body.dueDate,
+                        subTasks: req.body.subTasks,
+                        status: req.body.status
+                    }
+                })
         } catch (error) {
             console.log(error)
         }
