@@ -14,12 +14,7 @@
 
                 </a>
             </section>
-            <!-- <section class="project--tab">
-                <a class="<%= el._id %>Tab project-tabs-unselected" onclick="changeTab('<%= el._id %>Tab')">Documents</a>
-            </section>
-            <section class="project--tab">
-                <a class="<%= el._id %>Tab project-tabs-unselected" onclick="changeTab('<%= el._id %>Tab')">Messages</a>
-            </section> -->
+
             <section class="project--table">
                 <table>
                     <thead>
@@ -35,48 +30,74 @@
                     <tbody>
                         <% el.tasks.forEach( el=> { %>
                             <tr>
+                                <form action="/task/edit/<%= el.projectID %>?_method=PUT" method="post">
+                                    <td>
+                                        <input type="text" name="name" value="<%= el.name %>" required>
+                                    </td>
+                                    <td>
+                                        <select name="priority">
+                                            <option value="<%= el.priority %>">
+                                                <%= el.priority %>
+                                            </option>
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                            <option value="Urgent">Urgent</option>
+                                        </select>
+
+                                    </td>
+                                    <td>
+                                        <% if(user.admin){ %>
+                                            <input type="number" name="estTime" step="0.01" value="<%= el.estTime %>" required>
+                                            <% } else { %>
+                                                <span>
+                                                    <%= el.estTime %>
+                                                </span>
+                                                <% } %>
+                                    </td>
+                                    <td>
+                                        $<%= el.estCost %>
+                                    </td>
+                                    <td>
+                                        <select name="status">
+                                            <option value="<%= el.status %>">
+                                                <%= el.status %>
+                                            </option>
+                                            <option value="Not Started">Not Started</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="On Hold">On Hold</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                    </td>
+
+                                    <td class="dropdown-btn">
+                                        <i class="show-more fa-solid fa-caret-down" onclick="showHideTaskInfo('task-info-<%= el._id %>')"></i>
+                                    </td>
+                                    <td><button type="submit" class="btn">Save Changes</button></td>
+                                </form>
                                 <td>
-                                    <%= el.taskName %>
-                                </td>
-                                <td>
-                                    <%= el.priority %>
-                                </td>
-                                <td>
-                                    <%= el.estTime %>
-                                </td>
-                                <td>
-                                    $<%= el.estCost %>
-                                </td>
-                                <td>
-                                    <%= el.status %>
-                                </td>
-                                <td class="dropdown-btn">
-                                    <i class="show-more fa-solid fa-caret-down" onclick="showHideTaskInfo('task-info-<%= el._id %>')"></i>
-                                </td>
-                                <td>
-                                    <i class="fa-solid fa-pen" onclick="showHideEditTask('edit-task-<%= el._id %>')"></i>
-                                </td>
-                                <td>
-                                    <form action="/task/delete/<%= el._id %>?_method=DELETE" method="POST">
+                                    <form action="/task/delete/<%= el.projectID %>?_method=DELETE" method="POST">
                                         <button type="submit"><i class="fa-solid fa-trash" onclick="warnMessage()"></i></button>
                                     </form>
-
                                 </td>
                             </tr>
                             <tr class="hide" id="task-info-<%= el._id %>">
-                                <td colspan="7">
-                                    <h5>Description</h5>
-                                    <p>
-                                        <%= el.taskDescription %>
-                                    </p>
-                                    <h5>Rate</h5>
-                                    <span>
-                                        <%= el.rate %>
-                                    </span>
-                                    <h5>Due Date</h5>
-                                    <span>
-                                        <%= el.dueDate %>
-                                    </span>
+                                <form action="/task/edit/<%= el.projectID %>?_method=PUT" method="post">
+                                    <td colspan="7">
+                                        <h5>Description</h5>
+                                        <textarea name="description" rows="10" placeholder="Description" required><%= el.description %></textarea>
+                                        <h5>Rate</h5>
+                                        <% if(user.admin){ %>
+                                            <input type="number" name="rate" value="<%= el.rate %>" required>
+                                            <% } else { %>
+                                                <span>
+                                                    <%= el.rate %>
+                                                </span>
+                                                <% } %>
+                                                    <h5>Due Date</h5>
+                                                    <input type="date" name="taskDueDate" value="<%= el.dueDate %>">
+                                                    <button type="submit" class="btn">Save Changes</button>
+                                </form>
                                 </td>
                             </tr>
                             <% }) %>
@@ -93,7 +114,6 @@
                                         <% totalTime=el.estTime + totalTime %>
                                             <% }) %>
                                                 <%= totalTime %>
-
                             </td>
                             <td>
                                 <% let totalCost=0 %>
@@ -112,8 +132,8 @@
                     <form action="/task/add/<%= el._id %>" method="post" class="create-task-form">
                         <section class="create-task-inputs">
                             <section>
-                                <label for="taskName">Task Name</label>
-                                <input type="text" name="taskName" placeholder="Task Name" required>
+                                <label for="name">Task Name</label>
+                                <input type="text" name="name" placeholder="Task Name" required>
                             </section>
                             <section>
                                 <label for="priority">Priority</label>
@@ -125,12 +145,12 @@
                                 </select>
                             </section>
                             <section>
-                                <label for="taskDueDate">Due Date</label>
-                                <input type="date" name="taskDueDate">
+                                <label for="dueDate">Due Date</label>
+                                <input type="date" name="dueDate">
                             </section>
                         </section>
-                        <label for="taskDescription">Description</label>
-                        <textarea name="taskDescription" rows="10" placeholder="Description"></textarea>
+                        <label for="description">Description</label>
+                        <textarea name="description" rows="10" placeholder="Description"></textarea>
                         <% if(user.admin){ %>
                             <section class="create-task-inputs">
                                 <section>
@@ -153,55 +173,6 @@
                             </section>
                             <% } %>
                                 <button type="submit" class="btn">Add Task</button>
-                    </form>
-                </section>
-
-                <!-- EDIT TASK FORM -->
-                <section class="create-task-container hide" id="edit-task-<%= el._id %>">
-                    <form action="/task/edit/<%= el._id %>" method="post" class="create-task-form">
-                        <section class="create-task-inputs">
-                            <section>
-                                <label for="taskName">Task Name</label>
-                                <input type="text" name="taskName" placeholder="Task Name" required>
-                            </section>
-                            <section>
-                                <label for="priority">Priority</label>
-                                <select name="priority">
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
-                                    <option value="Urgent">Urgent</option>
-                                </select>
-                            </section>
-                            <section>
-                                <label for="taskDueDate">Due Date</label>
-                                <input type="date" name="taskDueDate">
-                            </section>
-                        </section>
-                        <label for="taskDescription">Description</label>
-                        <textarea name="taskDescription" rows="10" placeholder="Description"></textarea>
-                        <% if(user.admin){ %>
-                            <section class="create-task-inputs">
-                                <section>
-                                    <label for="rate">Rate</label>
-                                    <input type="number" name="rate" placeholder="50" required>
-                                </section>
-                                <section>
-                                    <label for="estTime">Estimated Time</label>
-                                    <input type="number" name="estTime" step="0.01" placeholder="1.5" required>
-                                </section>
-                                <section>
-                                    <label for="status">Status</label>
-                                    <select name="status">
-                                        <option value="Not Started">Not Started</option>
-                                        <option value="In Progress">In Progress</option>
-                                        <option value="On Hold">On Hold</option>
-                                        <option value="Completed">Completed</option>
-                                    </select>
-                                </section>
-                            </section>
-                            <% } %>
-                                <button type="submit" class="btn">Save Changes</button>
                     </form>
                 </section>
             </section>

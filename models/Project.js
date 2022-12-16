@@ -1,16 +1,5 @@
 const mongoose = require('mongoose')
 
-const TaskSchema = new mongoose.Schema({
-    taskName: String,
-    taskDescription: String,
-    rate: Number,
-    estTime: Number,
-    estCost: Number,
-    dueDate: Date,
-    priority: String,
-    status: String
-})
-
 const ProjectSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -18,7 +7,7 @@ const ProjectSchema = new mongoose.Schema({
     },
     company: String,
     description: String,
-    tasks: [TaskSchema],
+    tasks: [],
     budget: Number,
     estTime: Number,
     cost: Number,
